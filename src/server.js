@@ -5,7 +5,7 @@ const PORT = 8000;
 class Node {
   constructor(data) {
     this.data = data;
-    this.next_node = null;
+    this.nextNode = null;
   }
 }
 
@@ -31,60 +31,103 @@ class LinkedList {
     return this.length;
   }
 
-  //Adds new Node containing data at head of the list
-  //Takes O(1) time
   add(data) {
-    let new_node = new Node(data);
-    new_node.next_node = this.head;
-    this.head = new_node;
+    /*
+    Adds new Node containing data at head of the list
+    Takes O(1) time
+    */
+
+    let newNode = new Node(data);
+    newNode.nextNode = this.head;
+    this.head = newNode;
     this.length += 1;
+    return newNode;
   }
 
-  /*
+  search(key) {
+    /*
    Search for the first node containing data that matches the key
    Return the node or 'Null' if not found
    Takes O(n)
   */
 
-  search(key) {
     let curr = this.head;
     while (curr) {
       if (curr.data === key) {
         return curr.data;
       } else {
-        curr = curr.next_node;
+        curr = curr.nextNode;
       }
     }
     return null;
   }
 
-  //Returns an array of node for easy printing
+  insert(data, index) {
+    /* 
+  Inserts a new Node containing at index position 
+  Insertion takes O(1) time but finding the node at the 
+  insertion point takes O(n) time
+  */
+
+    if (index === 0) {
+      this.add(data);
+    }
+    a;
+  }
+
+  append(data) {
+    /*
+    Append a new Node at the tail 
+    Appending takes O(n) time
+    */
+    let newNode = new Node(data);
+    if (!this.head) {
+      this.head = newNode;
+    } else {
+      let current = this.head;
+      while (current.nextNode) current = current.nextNode;
+      current.nextNode = newNode;
+      this.length += 1;
+      return newNode;
+    }
+  }
+
   toArray() {
+    //Returns an array of node for easy printing
+
     const out = [];
     let current = this.head;
     while (current) {
       if (current === this.head) {
         out.push(`Head: ${current.data}`);
-      } else if (current.next_node === null) {
+      } else if (current.nextNode === null) {
         out.push(`Tail: ${current.data}`);
       } else {
         out.push(current.data);
       }
-      current = current.next_node;
+      current = current.nextNode;
     }
     return out.join(" -> ");
   }
 }
 
 let l = new LinkedList();
-l.add(10);
-l.add(20);
-l.add(30);
-l.add(40);
+// l.add(10);
+// l.add(20);
+// l.add(30);
+// l.add(40);
+l.append(10);
+l.append(20);
+l.append(30);
+// l.append(20);
+// l.append(30);
+
 // console.log(l.size());
 // console.log(l.toArray());
-// console.log(l);
-console.log(l.search(10));
+// console.log(l.insert(20, 2));
+console.log(l);
+
+// console.log(l.search(10));
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
