@@ -62,19 +62,6 @@ class LinkedList {
     return null;
   }
 
-  insert(data, index) {
-    /* 
-  Inserts a new Node containing at index position 
-  Insertion takes O(1) time but finding the node at the 
-  insertion point takes O(n) time
-  */
-
-    if (index === 0) {
-      this.add(data);
-    }
-    a;
-  }
-
   append(data) {
     /*
     Append a new Node at the tail 
@@ -87,9 +74,35 @@ class LinkedList {
       let current = this.head;
       while (current.nextNode) current = current.nextNode;
       current.nextNode = newNode;
-      this.length += 1;
-      return newNode;
     }
+    this.length += 1;
+    return newNode;
+  }
+
+  insert(data, index) {
+    /* 
+  Inserts a new Node containing at index position 
+  Insertion takes O(1) time but finding the node at the 
+  insertion point takes O(n) time
+  */
+
+    if (index < 0) throw new RangeError("Index must be >= 0"); //Defensive check
+
+    if (index === 0) return this.add(data); // If index === 0, Insert at head
+
+    if (index >= this.length) return this.append(data); //If index >= length, Append at tail
+
+    let current = this.head;
+    // Move index -1 steps forward
+    for (let i = 0; i < index - 1; i++) {
+      current = current.nextNode;
+    }
+    console.log(current);
+
+    const newNode = new Node(data);
+    const nextNode = current.next_node; // node currently at 'index'
+    current.next_node = newNode;
+    newNode.next_node = nextNode;
   }
 
   toArray() {
@@ -112,19 +125,20 @@ class LinkedList {
 }
 
 let l = new LinkedList();
-// l.add(10);
-// l.add(20);
-// l.add(30);
+l.add(10);
+l.add(20);
+l.add(30);
 // l.add(40);
-l.append(10);
-l.append(20);
-l.append(30);
+// l.append(10);
 // l.append(20);
 // l.append(30);
+// l.append(20);
+// l.append(30);
+// l.insert(12, 5);
 
 // console.log(l.size());
 // console.log(l.toArray());
-// console.log(l.insert(20, 2));
+// console.log(l.insert(12, 1));
 console.log(l);
 
 // console.log(l.search(10));
