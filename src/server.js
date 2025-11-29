@@ -94,15 +94,15 @@ class LinkedList {
 
     let current = this.head;
     // Move index -1 steps forward
-    for (let i = 0; i < index - 1; i++) {
+    for (let i = 0; i < index -1; i++) {
       current = current.nextNode;
     }
-    console.log(current);
+    // console.log(current);
 
     const newNode = new Node(data);
-    const nextNode = current.next_node; // node currently at 'index'
-    current.next_node = newNode;
-    newNode.next_node = nextNode;
+    const next = current.nextNode; // node currently at 'index'
+    current.nextNode = newNode;
+    newNode.nextNode = next;
   }
 
   toArray() {
@@ -128,7 +128,7 @@ let l = new LinkedList();
 l.add(10);
 l.add(20);
 l.add(30);
-// l.add(40);
+l.add(40);
 // l.append(10);
 // l.append(20);
 // l.append(30);
@@ -137,8 +137,8 @@ l.add(30);
 // l.insert(12, 5);
 
 // console.log(l.size());
-// console.log(l.toArray());
-// console.log(l.insert(12, 1));
+console.log(l.toArray());
+console.log(l.insert(12, 1));
 console.log(l);
 
 // console.log(l.search(10));
