@@ -93,14 +93,20 @@ class LinkedList {
     if (index >= this.length) return this.append(data); //If index >= length, Append at tail
 
     let current = this.head;
+    // console.log("Current head:", current.data);
     // Move index -1 steps forward
-    for (let i = 0; i < index -1; i++) {
-      current = current.nextNode;
-    }
-    // console.log(current);
+    console.log("Incoming index", index);
 
-    const newNode = new Node(data);
-    const next = current.nextNode; // node currently at 'index'
+    for (let i = 0; i < index -1; i++) {
+     current = current.nextNode;
+    }
+    console.log("Traverse node", current.data);
+
+
+    let newNode = new Node(data);
+    let next = current.nextNode;
+    console.log("Next node", next.data);
+
     current.nextNode = newNode;
     newNode.nextNode = next;
   }
@@ -138,7 +144,7 @@ l.add(40);
 
 // console.log(l.size());
 console.log(l.toArray());
-console.log(l.insert(12, 1));
+l.insert(10, 1);
 console.log(l);
 
 // console.log(l.search(10));
