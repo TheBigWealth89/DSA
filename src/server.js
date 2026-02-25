@@ -97,16 +97,12 @@ class LinkedList {
     // Move index -1 steps forward
     console.log("Incoming index", index);
 
-    for (let i = 0; i < index -1; i++) {
-     current = current.nextNode;
+    for (let i = 0; i < index - 1; i++) {
+      current = current.nextNode;
     }
-    console.log("Traverse node", current.data);
-
 
     let newNode = new Node(data);
     let next = current.nextNode;
-    console.log("Next node", next.data);
-
     current.nextNode = newNode;
     newNode.nextNode = next;
   }
